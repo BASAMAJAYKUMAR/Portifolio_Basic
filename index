@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajay - Web Developer</title>
+  <meta name="description" content="This is a personal portfolio made by Ajay Kumar">
+  <link rel="shortcut icon" href="Ajay_logo-removebg-preview.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #fff;
+      --black-coral: #6e6e6e;
+      --charcoal: #444;
+      --cinnamon-satin: #e28f8f;
+      --cultured: #f5f5f5;
+      --shadow-1: 0 0 20px rgba(0,0,0,0.05);
+      --radius-pill: 100px;
+      --fw-700: 700;
+      --transition-1: 0.25s ease;
+      --fs-1: calc(2.7rem + 1.38vw);
+      --fs-5: 1.8rem;
+      --fs-6: 1.7rem;
+      --fs-7: 1.5rem;
+      --section-padding: 90px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.7; background: var(--white); color: var(--black-coral); scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    .container { padding: 0 16px; max-width: 1140px; margin: auto; }
+    header { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: var(--shadow-1); z-index: 10; padding: 15px 0; }
+    .logo img { height: 40px; }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    .navbar-list { display: flex; gap: 20px; list-style: none; }
+    .navbar-link:hover { color: var(--cinnamon-satin); }
+    .hero { padding: calc(var(--section-padding) + 60px) 0; background: var(--cultured); text-align: center; }
+    .hero-title { font-size: var(--fs-1); font-weight: var(--fw-700); margin-bottom: 20px; min-height: 3em; }
+    .section-text { font-size: var(--fs-5); margin-bottom: 30px; }
+    .btn { font-weight: var(--fw-700); padding: 12px 28px; border-radius: var(--radius-pill); transition: var(--transition-1); display: inline-block; margin: 5px; }
+    .btn-primary { background: var(--cinnamon-satin); color: var(--white); }
+    .btn-primary:hover { transform: translateY(-4px); }
+    .btn-secondary { border: 2px solid var(--cinnamon-satin); color: var(--cinnamon-satin); }
+    .btn-secondary:hover { transform: translateY(-4px); background: var(--cinnamon-satin); color: var(--white); }
+    [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
+    footer { background: var(--white); padding: 40px 0; text-align: center; margin-top: 50px; }
+    .social-list { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+    .dark-toggle { position: fixed; bottom: 20px; right: 20px; font-size: 1.5rem; padding: 10px; border-radius: 50%; border: none; cursor: pointer; background: var(--cinnamon-satin); color: #fff; z-index: 999; }
+    body.dark-mode { background: #1a1a1a; color: #f5f5f5; }
+    body.dark-mode .btn-secondary { border-color: #f5f5f5; color: #f5f5f5; }
+    @media(max-width: 375px) { .hero-title { font-size: 2rem; } .section-text { font-size: 1.4rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo"><img src="Ajay_logo-removebg-preview.png" alt="Ajay Logo"></a>
+      <ul class="navbar-list">
+        <li><a href="#home" class="navbar-link">Home</a></li>
+        <li><a href="#about" class="navbar-link">About</a></li>
+        <li><a href="#projects" class="navbar-link">Projects</a></li>
+        <li><a href="#contact" class="navbar-link">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container">
+      <h1 class="hero-title" data-reveal></h1>
+      <p class="section-text" data-reveal data-reveal-delay="0.5s">
+        A web developer creates web applications using HTML, CSS, and JavaScript on the client side and any server-side language.
+      </p>
+      <div>
+        <a href="#projects" class="btn btn-primary" data-reveal>See My Works</a>
+        <a href="#contact" class="btn btn-secondary" data-reveal>Contact Me</a>
+      </div>
+      <img src="ajay_image-removebg-preview.png" alt="Ajay Kumar" width="300" data-reveal>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2024 Ajay Kumar. All rights reserved.</p>
+  <ul class="social-list">
+    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+    <li><a href="https://github.com/BASAMAJAYKUMAR"><ion-icon name="logo-github"></ion-icon></a></li>
+    <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+  </ul>
+</footer>
+
+<button class="dark-toggle">🌙</button>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+  // Scroll Reveal
+  const revealElements = document.querySelectorAll("[data-reveal]");
+  const revealOnScroll = () => {
+    for (const el of revealElements) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        el.classList.add("revealed");
+      }
+    }
+  };
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+
+  // Typing effect
+  const typedText = "I'm Ajay Kumar, Web Developer.";
+  const heroTitle = document.querySelector(".hero-title");
+  let i = 0;
+  function typeEffect() {
+    if (i < typedText.length) {
+      heroTitle.textContent += typedText.charAt(i);
+      i++;
+      setTimeout(typeEffect, 80);
+    }
+  }
+  window.addEventListener("load", typeEffect);
+
+  // Dark mode toggle
+  const toggleBtn = document.querySelector(".dark-toggle");
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    toggleBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  });
+
+  // Smooth scroll for navbar links
+  document.querySelectorAll('.navbar-link').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href");
+      document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // Floating hero image
+  const heroImg = document.querySelector(".hero img");
+  if(heroImg) {
+    let y = 0, direction = 1;
+    setInterval(() => {
+      y += direction * 0.5;
+      if(y > 10 || y < -10) direction *= -1;
+      heroImg.style.transform = `translateY(${y}px)`;
+    }, 40);
+  }
+</script>
+
+</body>
+</html>
