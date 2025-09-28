@@ -1,159 +1,454 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajay - Web Developer</title>
-  <meta name="description" content="This is a personal portfolio made by Ajay Kumar">
-  <link rel="shortcut icon" href="Ajay_logo-removebg-preview.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Your Name</title>
+  <meta name="description" content="Advanced responsive portfolio built with HTML5, CSS3 and modern JavaScript.">
+
+  <!-- Favicons (optional) -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
   <style>
-    :root {
-      --white: #fff;
-      --black-coral: #6e6e6e;
-      --charcoal: #444;
-      --cinnamon-satin: #e28f8f;
-      --cultured: #f5f5f5;
-      --shadow-1: 0 0 20px rgba(0,0,0,0.05);
-      --radius-pill: 100px;
-      --fw-700: 700;
-      --transition-1: 0.25s ease;
-      --fs-1: calc(2.7rem + 1.38vw);
-      --fs-5: 1.8rem;
-      --fs-6: 1.7rem;
-      --fs-7: 1.5rem;
-      --section-padding: 90px;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.7; background: var(--white); color: var(--black-coral); scroll-behavior: smooth; }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-    button { cursor: pointer; border: none; background: none; font: inherit; }
-    .container { padding: 0 16px; max-width: 1140px; margin: auto; }
-    header { position: fixed; top: 0; width: 100%; background: var(--white); box-shadow: var(--shadow-1); z-index: 10; padding: 15px 0; }
-    .logo img { height: 40px; }
-    nav { display: flex; justify-content: space-between; align-items: center; }
-    .navbar-list { display: flex; gap: 20px; list-style: none; }
-    .navbar-link:hover { color: var(--cinnamon-satin); }
-    .hero { padding: calc(var(--section-padding) + 60px) 0; background: var(--cultured); text-align: center; }
-    .hero-title { font-size: var(--fs-1); font-weight: var(--fw-700); margin-bottom: 20px; min-height: 3em; }
-    .section-text { font-size: var(--fs-5); margin-bottom: 30px; }
-    .btn { font-weight: var(--fw-700); padding: 12px 28px; border-radius: var(--radius-pill); transition: var(--transition-1); display: inline-block; margin: 5px; }
-    .btn-primary { background: var(--cinnamon-satin); color: var(--white); }
-    .btn-primary:hover { transform: translateY(-4px); }
-    .btn-secondary { border: 2px solid var(--cinnamon-satin); color: var(--cinnamon-satin); }
-    .btn-secondary:hover { transform: translateY(-4px); background: var(--cinnamon-satin); color: var(--white); }
-    [data-reveal] { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    [data-reveal].revealed { opacity: 1; transform: translateY(0); }
-    footer { background: var(--white); padding: 40px 0; text-align: center; margin-top: 50px; }
-    .social-list { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-    .dark-toggle { position: fixed; bottom: 20px; right: 20px; font-size: 1.5rem; padding: 10px; border-radius: 50%; border: none; cursor: pointer; background: var(--cinnamon-satin); color: #fff; z-index: 999; }
-    body.dark-mode { background: #1a1a1a; color: #f5f5f5; }
-    body.dark-mode .btn-secondary { border-color: #f5f5f5; color: #f5f5f5; }
-    @media(max-width: 375px) { .hero-title { font-size: 2rem; } .section-text { font-size: 1.4rem; } }
+  /* -------------------------------
+     Variables & Reset
+     ------------------------------- */
+  :root{
+    --bg: #0f1724;
+    --card: #0b1220;
+    --muted: #9aa4b2;
+    --accent: #6ee7b7;
+    --accent-2: #60a5fa;
+    --glass: rgba(255,255,255,0.03);
+    --radius: 12px;
+    --max-width: 1100px;
+    --ff: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;}
+  body{
+    margin:0;font-family:var(--ff);background:linear-gradient(180deg,#071027 0%,var(--bg) 100%);color:#e6eef6;line-height:1.45;
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:24px;
+  }
+  a{color:inherit;text-decoration:none}
+
+  /* Utility container */
+  .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+  /* -------------------------------
+     Header / Nav
+     ------------------------------- */
+  header{position:sticky;top:16px;z-index:40}
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(6px);padding:10px;border-radius:16px
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{width:44px;height:44px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:10px;display:grid;place-items:center;font-weight:700;color:#042128}
+  nav a{margin-left:12px;padding:8px 10px;border-radius:8px;font-weight:600;color:var(--muted)}
+  nav a.active{color:var(--accent);background:rgba(110,231,183,0.06)}
+
+  .controls{display:flex;align-items:center;gap:8px}
+  .btn{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+  /* Mobile nav */
+  .hamburger{display:none}
+  @media (max-width:900px){nav{display:none}.hamburger{display:block}}
+
+  /* -------------------------------
+     Hero
+     ------------------------------- */
+  .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;padding:36px 18px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 12px 30px rgba(2,6,23,0.6)}
+  .hero h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px}
+  .hero p{color:var(--muted);margin:0 0 16px}
+  .cta{display:flex;gap:12px}
+  .card-profile{padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));min-height:240px}
+  .avatar{width:120px;height:120px;border-radius:20px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:block;margin:0 auto 12px}
+  .skills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .chip{padding:6px 10px;border-radius:999px;background:var(--glass);color:var(--muted);font-weight:600}
+
+  /* -------------------------------
+     Sections (About, Projects, Blog, Contact)
+     ------------------------------- */
+  section{margin:28px 0}
+  .section-header{display:flex;align-items:end;justify-content:space-between;gap:12px}
+  .section-title{font-size:18px;font-weight:700}
+  .grid{display:grid;gap:16px}
+
+  /* Projects grid */
+  .projects-grid{grid-template-columns:repeat(3,1fr)}
+  .project{background:var(--card);padding:12px;border-radius:12px;overflow:hidden;cursor:pointer;transition:transform .24s ease, box-shadow .24s ease}
+  .project:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+  .project img{width:100%;height:180px;object-fit:cover;border-radius:10px}
+  .project h3{margin:8px 0 4px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.03);color:var(--muted)}
+
+  /* Blog list */
+  .blog-list{grid-template-columns:repeat(2,1fr)}
+  .post{display:flex;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+  .post img{width:120px;height:80px;object-fit:cover;border-radius:8px}
+  .meta{color:var(--muted);font-size:13px}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr 420px}
+  form{display:flex;flex-direction:column;gap:12px}
+  input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:inherit}
+  textarea{min-height:140px}
+  .form-row{display:flex;gap:12px}
+  .form-row > *{flex:1}
+
+  /* Footer */
+  footer{padding:24px 0;color:var(--muted);text-align:center}
+
+  /* Project modal */
+  .modal{position:fixed;inset:0;background:linear-gradient(180deg,rgba(2,6,23,0.7),rgba(2,6,23,0.85));display:none;place-items:center;padding:20px}
+  .modal.show{display:grid}
+  .modal-card{max-width:920px;width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px}
+
+  /* Responsive rules */
+  @media (max-width:1100px){
+    .hero{grid-template-columns:1fr 300px}
+    .projects-grid{grid-template-columns:repeat(2,1fr)}
+    .blog-list{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:760px){
+    body{padding:14px}
+    .hero{grid-template-columns:1fr; text-align:center}
+    .hero .cta{justify-content:center}
+    .card-profile{order:2}
+    .projects-grid{grid-template-columns:repeat(1,1fr)}
+    .blog-list{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr}
+    nav{display:none}
+  }
+
+  /* small screens nav drawer */
+  .drawer{position:fixed;right:16px;top:68px;background:var(--card);padding:12px;border-radius:12px;display:none;flex-direction:column;gap:6px}
+  .drawer.show{display:flex}
+
+  /* subtle animations */
+  .fade-up{opacity:0;transform:translateY(8px);transition:opacity .5s ease, transform .5s ease}
+  .fade-up.show{opacity:1;transform:none}
+
+  /* Accessibility focus */
+  a:focus, button:focus, input:focus{outline:3px solid rgba(96,165,250,0.12);outline-offset:3px}
   </style>
 </head>
 <body>
-
-<header>
   <div class="container">
-    <nav>
-      <a href="#" class="logo"><img src="Ajay_logo-removebg-preview.png" alt="Ajay Logo"></a>
-      <ul class="navbar-list">
-        <li><a href="#home" class="navbar-link">Home</a></li>
-        <li><a href="#about" class="navbar-link">About</a></li>
-        <li><a href="#projects" class="navbar-link">Projects</a></li>
-        <li><a href="#contact" class="navbar-link">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">AJ</div>
+          <div>
+            <div style="font-weight:700">Your Name</div>
+            <div style="font-size:12px;color:var(--muted)">Frontend Developer • Designer</div>
+          </div>
+        </div>
 
-<main>
-  <section class="hero" id="home">
-    <div class="container">
-      <h1 class="hero-title" data-reveal></h1>
-      <p class="section-text" data-reveal data-reveal-delay="0.5s">
-        A web developer creates web applications using HTML, CSS, and JavaScript on the client side and any server-side language.
-      </p>
-      <div>
-        <a href="#projects" class="btn btn-primary" data-reveal>See My Works</a>
-        <a href="#contact" class="btn btn-secondary" data-reveal>Contact Me</a>
+        <nav aria-label="Main Navigation">
+          <a href="#home" class="active">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="controls">
+          <button class="btn" id="themeBtn" aria-pressed="false">Toggle Theme</button>
+          <button class="hamburger btn" id="hamburger" aria-label="Open menu">☰</button>
+        </div>
       </div>
-      <img src="ajay_image-removebg-preview.png" alt="Ajay Kumar" width="300" data-reveal>
+
+      <div class="drawer" id="drawer">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section id="home" class="hero" aria-labelledby="home-heading">
+        <div>
+          <h1 id="home-heading">Hi, I'm <span style="color:var(--accent)">Your Name</span> — Frontend Developer</h1>
+          <p>I build modern, responsive web apps and delightful user interfaces. I blend thoughtful design with performant code to ship production-ready projects.</p>
+
+          <div class="cta">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn" href="#contact">Hire Me</a>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:14px">Top skills</div>
+          <div class="skills" style="margin-top:8px">
+            <div class="chip">HTML5</div>
+            <div class="chip">CSS3 / Grid</div>
+            <div class="chip">JavaScript</div>
+            <div class="chip">React</div>
+            <div class="chip">Accessibility</div>
+          </div>
+        </div>
+
+        <aside class="card-profile">
+          <div class="avatar" aria-hidden="true"></div>
+          <h3 style="text-align:center;margin:8px 0 2px">Your Name</h3>
+          <div style="text-align:center;color:var(--muted)">UI-focused Frontend Developer</div>
+
+          <div style="margin-top:16px">
+            <strong style="font-size:13px">Experience</strong>
+            <div style="color:var(--muted);font-size:13px;margin-top:6px">3+ years building responsive, accessible websites and single page apps for clients and startups.</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <strong style="font-size:13px">Contact</strong>
+            <div style="margin-top:6px;color:var(--muted);font-size:13px">youremail@example.com</div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="fade-up" tabindex="0">
+        <div class="section-header">
+          <div>
+            <div class="section-title">About Me</div>
+            <div style="color:var(--muted);font-size:14px">A quick introduction</div>
+          </div>
+          <div style="color:var(--muted);font-size:13px">Available for freelance & full-time</div>
+        </div>
+
+        <div style="margin-top:16px;display:grid;grid-template-columns:1fr 360px;gap:16px;align-items:start">
+          <div>
+            <p style="color:var(--muted)">I’m a frontend developer who loves creating beautiful, accessible user interfaces and smooth user experiences. I focus on maintainable CSS architecture, performance, and accessibility. I enjoy mentoring juniors and learning about design systems.</p>
+
+            <ul style="color:var(--muted);margin-top:12px">
+              <li>Design systems & component libraries</li>
+              <li>Performance optimizations and Lighthouse improvements</li>
+              <li>Testing (unit & integration) and CI workflows</li>
+            </ul>
+          </div>
+
+          <div style="background:var(--card);padding:16px;border-radius:12px">
+            <div style="font-weight:700">Experience</div>
+            <div style="color:var(--muted);margin-top:8px">Frontend Developer — Acme Co. • 2023–Present</div>
+            <div style="color:var(--muted);margin-top:8px">UI Engineer — Startup X • 2021–2023</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="fade-up">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Projects</div>
+            <div style="color:var(--muted);font-size:14px">Selected work & case studies</div>
+          </div>
+
+          <div>
+            <label for="filter" style="font-size:13px;color:var(--muted)">Filter:</label>
+            <select id="filter" style="margin-left:8px">
+              <option value="all">All</option>
+              <option value="web">Web</option>
+              <option value="ui">UI</option>
+              <option value="tool">Tools</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="grid projects-grid" id="projectsGrid">
+          <!-- Project items added by JS for ease of customization -->
+        </div>
+      </section>
+
+      <!-- BLOG -->
+      <section id="blog" class="fade-up">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Blog</div>
+            <div style="color:var(--muted);font-size:14px">Notes and articles</div>
+          </div>
+          <a href="#blog" style="color:var(--muted);font-size:13px">View all</a>
+        </div>
+
+        <div style="margin-top:12px" class="grid blog-list" id="blogList">
+          <!-- blog posts inserted by JS -->
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="fade-up">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Contact</div>
+            <div style="color:var(--muted);font-size:14px">Let's build something together</div>
+          </div>
+          <div style="color:var(--muted);font-size:13px">Prefer email? youremail@example.com</div>
+        </div>
+
+        <div style="margin-top:12px" class="grid contact-grid">
+          <form id="contactForm" aria-label="Contact form">
+            <div class="form-row">
+              <input type="text" id="name" name="name" placeholder="Your name*" required />
+              <input type="email" id="email" name="email" placeholder="Email*" required />
+            </div>
+            <input type="text" id="subject" name="subject" placeholder="Subject" />
+            <textarea id="message" name="message" placeholder="Your message*" required></textarea>
+            <div style="display:flex;gap:12px;align-items:center">
+              <button type="submit" class="btn">Send Message</button>
+              <div id="formStatus" style="color:var(--muted);font-size:13px"></div>
+            </div>
+          </form>
+
+          <aside style="background:var(--card);padding:16px;border-radius:12px">
+            <div style="font-weight:700">Get in touch</div>
+            <div style="color:var(--muted);margin-top:8px">I’m available for freelance projects and remote work. I typically reply within 24–48 hours.</div>
+
+            <div style="margin-top:12px">
+              <div style="font-weight:700">Social</div>
+              <div style="display:flex;gap:8px;margin-top:6px"><a href="#">Twitter</a> <a href="#">Github</a> <a href="#">LinkedIn</a></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Your Name • Built with HTML, CSS & JavaScript
+      </footer>
+    </main>
+
+    <!-- Modal for project details -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true">
+      <div class="modal-card" id="modalCard">
+        <button id="closeModal" class="btn" style="float:right">Close</button>
+        <div id="modalContent"></div>
+      </div>
     </div>
-  </section>
-</main>
 
-<footer>
-  <p>© 2024 Ajay Kumar. All rights reserved.</p>
-  <ul class="social-list">
-    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
-    <li><a href="https://github.com/BASAMAJAYKUMAR"><ion-icon name="logo-github"></ion-icon></a></li>
-    <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-  </ul>
-</footer>
+  </div>
 
-<button class="dark-toggle">🌙</button>
+  <script>
+  /* -------------------------------
+     Sample data, interactivity & progressive enhancements
+     ------------------------------- */
+  const projects = [
+    {id:1,title:'Design System UI Kit',tags:['ui','tool'],img:'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=1',desc:'A reusable design system and component library built with modular CSS and accessibility in mind.'},
+    {id:2,title:'E-commerce SPA',tags:['web'],img:'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2',desc:'Fast, responsive Single Page Application with checkout and product filtering.'},
+    {id:3,title:'Performance Dashboard',tags:['web','tool'],img:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3',desc:'A dashboard showing real-time metrics with charts and export features.'},
+    {id:4,title:'Portfolio CMS',tags:['web','tool'],img:'https://images.unsplash.com/photo-1526322728959-8a3a56a1b8a6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=4',desc:'A lightweight CMS for creatives to manage portfolios.'},
+    {id:5,title:'Micro-interactions Library',tags:['ui'],img:'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5',desc:'Collection of performant micro-interactions using CSS & JS.'}
+  ];
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  const posts = [
+    {id:1,title:'Improving Lighthouse Performance',date:'2025-06-12',excerpt:'Practical tips to optimize TTFB, render-blocking resources and bundle size.'},
+    {id:2,title:'Design Tokens & Theming',date:'2025-04-03',excerpt:'Use tokens to keep your design consistent and themable across projects.'},
+  ];
 
-<script>
-  // Scroll Reveal
-  const revealElements = document.querySelectorAll("[data-reveal]");
-  const revealOnScroll = () => {
-    for (const el of revealElements) {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        el.classList.add("revealed");
-      }
-    }
-  };
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
+  // Render projects and blog
+  const projectsGrid = document.getElementById('projectsGrid');
+  const blogList = document.getElementById('blogList');
+  const filter = document.getElementById('filter');
 
-  // Typing effect
-  const typedText = "I'm Ajay Kumar, Web Developer.";
-  const heroTitle = document.querySelector(".hero-title");
-  let i = 0;
-  function typeEffect() {
-    if (i < typedText.length) {
-      heroTitle.textContent += typedText.charAt(i);
-      i++;
-      setTimeout(typeEffect, 80);
-    }
+  function renderProjects(filterVal='all'){
+    projectsGrid.innerHTML='';
+    const filtered = projects.filter(p => filterVal==='all' || p.tags.includes(filterVal));
+    filtered.forEach(p => {
+      const el = document.createElement('article'); el.className='project'; el.tabIndex=0; el.setAttribute('data-id',p.id);
+      el.innerHTML = `\n        <img loading="lazy" alt="${p.title}" src="${p.img}">\n        <h3>${p.title}</h3>\n        <p style=\"color:var(--muted);font-size:13px;\">${p.desc}</p>\n        <div class=\"tags\">${p.tags.map(t=>`<span class=\"tag\">${t}</span>`).join('')}</div>`;
+      el.addEventListener('click',()=>openModal(p));
+      projectsGrid.appendChild(el);
+    });
   }
-  window.addEventListener("load", typeEffect);
 
-  // Dark mode toggle
-  const toggleBtn = document.querySelector(".dark-toggle");
-  toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    toggleBtn.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
+  function renderPosts(){
+    blogList.innerHTML='';
+    posts.forEach(post => {
+      const el = document.createElement('article'); el.className='post';
+      el.innerHTML = `\n        <img loading=\"lazy\" alt=\"${post.title}\" src=\"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6\">\n        <div>\n          <h4 style=\"margin:0 0 6px\">${post.title}</h4>\n          <div class=\"meta\">${post.date} • <span style=\"color:var(--muted)\">3 min read</span></div>\n          <p style=\"color:var(--muted);margin-top:8px\">${post.excerpt}</p>\n        </div>`;
+      blogList.appendChild(el);
+    });
+  }
+
+  // Modal
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modalContent');
+  const closeModalBtn = document.getElementById('closeModal');
+
+  function openModal(project){
+    modalContent.innerHTML = `\n      <h2>${project.title}</h2>\n      <img alt=\"${project.title}\" src=\"${project.img}\" style=\"width:100%;height:360px;object-fit:cover;border-radius:10px;margin-top:12px\">\n      <p style=\"color:var(--muted);margin-top:10px\">${project.desc}</p>\n      <div style=\"margin-top:10px\">\n        <a href=\"#\" class=\"btn\">Live demo</a>\n        <a href=\"#\" class=\"btn\">Source</a>\n      </div>`;
+    modal.classList.add('show');
+    closeModalBtn.focus();
+  }
+  closeModalBtn.addEventListener('click',()=>modal.classList.remove('show'));
+  modal.addEventListener('click',(e)=>{ if(e.target===modal) modal.classList.remove('show') });
+
+  // Filter
+  filter.addEventListener('change',()=>renderProjects(filter.value));
+
+  // Contact form: simple client-side validation and mailto fallback
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    if(!name || !email || !message){ status.textContent='Please fill the required fields.'; return }
+    // Build mailto as a fallback — replace with an API call to send from server in production
+    const subject = encodeURIComponent(form.subject.value || `Contact from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+    const mailto = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+    window.location.href = mailto;
+    status.textContent='Opening mail client…';
   });
 
-  // Smooth scroll for navbar links
-  document.querySelectorAll('.navbar-link').forEach(link => {
-    link.addEventListener('click', e => {
+  // Small UI: theme toggle (light/dark) — purely cosmetic
+  const themeBtn = document.getElementById('themeBtn');
+  let light = false;
+  themeBtn.addEventListener('click', ()=>{
+    light = !light;
+    document.documentElement.style.setProperty('--bg', light? '#f6f9fc' : '#0f1724');
+    document.documentElement.style.setProperty('--card', light? '#ffffff10' : '#0b1220');
+    themeBtn.setAttribute('aria-pressed', String(light));
+  });
+
+  // Mobile drawer
+  const hb = document.getElementById('hamburger');
+  const drawer = document.getElementById('drawer');
+  hb.addEventListener('click',()=>drawer.classList.toggle('show'));
+
+  // Smooth in-page nav and active link handling
+  document.querySelectorAll('nav a, .drawer a').forEach(a => {
+    a.addEventListener('click', (e)=>{
+      // preserve default for external or hashless
       e.preventDefault();
-      const targetId = link.getAttribute("href");
-      document.querySelector(targetId).scrollIntoView({ behavior: "smooth" });
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+      drawer.classList.remove('show');
     });
   });
 
-  // Floating hero image
-  const heroImg = document.querySelector(".hero img");
-  if(heroImg) {
-    let y = 0, direction = 1;
-    setInterval(() => {
-      y += direction * 0.5;
-      if(y > 10 || y < -10) direction *= -1;
-      heroImg.style.transform = `translateY(${y}px)`;
-    }, 40);
-  }
-</script>
+  // Simple lazy fade-in on scroll
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('show');
+    });
+  },{threshold:0.12});
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 
+  // Init
+  renderProjects(); renderPosts(); document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Keyboard accessibility: open focused project with Enter
+  document.addEventListener('keydown', (e)=>{
+    if(e.key==='Escape') modal.classList.remove('show');
+    if(e.key==='Enter' && document.activeElement && document.activeElement.classList.contains('project')){
+      const id = document.activeElement.getAttribute('data-id');
+      const p = projects.find(x=>String(x.id)===id); if(p) openModal(p);
+    }
+  });
+  </script>
 </body>
 </html>
